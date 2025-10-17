@@ -1,40 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: huda-roc <huda-roc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/17 12:00:04 by huda-roc          #+#    #+#             */
-/*   Updated: 2025/10/17 13:31:18 by huda-roc         ###   ########.fr       */
+/*   Created: 2025/10/17 16:38:49 by huda-roc          #+#    #+#             */
+/*   Updated: 2025/10/17 16:38:53 by huda-roc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+void	ft_putchar_fd(char c, int fd)
 {
-	int	i;
-	int	x;
-
-	i = 0;
-	x = 1;
-	while (*str == ' ' || (*str >= 9 && *str <= 13))
-	{
-		str++;
-	}
-	if (*str == '-' || *str == '+')
-	{
-		if (*str == '-')
-		{
-			x *= -1;
-		}
-		str++;
-	}
-	while (*str >= '0' && *str <= '9')
-	{
-		i = (i * 10) + (*str - '0');
-		str++;
-	}
-	return (i * x);
+	write(fd, &c, 1);
 }

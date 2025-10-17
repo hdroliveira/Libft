@@ -1,40 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: huda-roc <huda-roc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/17 12:00:04 by huda-roc          #+#    #+#             */
-/*   Updated: 2025/10/17 13:31:18 by huda-roc         ###   ########.fr       */
+/*   Created: 2025/10/17 13:55:47 by huda-roc          #+#    #+#             */
+/*   Updated: 2025/10/17 15:50:45 by huda-roc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int	i;
-	int	x;
+	char	*join;
+	size_t	len1;
+	size_t	len2;
+	size_t	i;
+	size_t	j;
 
+	len1 = ft_strlen(s1);
+	len2 = ft_strlen(s2);
+	join = (char *)malloc(len1 + len2 + 1);
+	if (!join)
+		return (NULL);
 	i = 0;
-	x = 1;
-	while (*str == ' ' || (*str >= 9 && *str <= 13))
+	while (i < len1)
 	{
-		str++;
+		join[i] = s1[i];
+		i++;
 	}
-	if (*str == '-' || *str == '+')
+	j = 0;
+	while (j < len2)
 	{
-		if (*str == '-')
-		{
-			x *= -1;
-		}
-		str++;
+		join[i + j] = s2[j];
+		j++;
 	}
-	while (*str >= '0' && *str <= '9')
-	{
-		i = (i * 10) + (*str - '0');
-		str++;
-	}
-	return (i * x);
+	join[i + j] = '\0';
+	return (join);
 }

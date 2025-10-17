@@ -1,40 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: huda-roc <huda-roc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/17 12:00:04 by huda-roc          #+#    #+#             */
-/*   Updated: 2025/10/17 13:31:18 by huda-roc         ###   ########.fr       */
+/*   Created: 2025/10/17 16:41:47 by huda-roc          #+#    #+#             */
+/*   Updated: 2025/10/17 16:41:55 by huda-roc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+void	ft_putendl_fd(char *s, int fd)
 {
-	int	i;
-	int	x;
-
-	i = 0;
-	x = 1;
-	while (*str == ' ' || (*str >= 9 && *str <= 13))
+	if (!s)
 	{
-		str++;
+		return ;
 	}
-	if (*str == '-' || *str == '+')
+	while (*s)
 	{
-		if (*str == '-')
-		{
-			x *= -1;
-		}
-		str++;
+		write(fd, s, 1);
+		s++;
 	}
-	while (*str >= '0' && *str <= '9')
-	{
-		i = (i * 10) + (*str - '0');
-		str++;
-	}
-	return (i * x);
+	write(fd, "\n", 1);
 }

@@ -1,40 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: huda-roc <huda-roc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/17 12:00:04 by huda-roc          #+#    #+#             */
-/*   Updated: 2025/10/17 13:31:18 by huda-roc         ###   ########.fr       */
+/*   Created: 2025/10/17 16:34:38 by huda-roc          #+#    #+#             */
+/*   Updated: 2025/10/17 16:35:15 by huda-roc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int	i;
-	int	x;
+	char	*new;
+	size_t	len;
+	size_t	i;
 
+	if (!s || !f)
+	{
+		return (NULL);
+	}
+	len = ft_strlen(s);
+	new = (char *)malloc(len + 1);
+	if (!new)
+	{
+		return (NULL);
+	}
 	i = 0;
-	x = 1;
-	while (*str == ' ' || (*str >= 9 && *str <= 13))
+	while (i < len)
 	{
-		str++;
+		new[i] = f(i, s[i]);
+		i++;
 	}
-	if (*str == '-' || *str == '+')
-	{
-		if (*str == '-')
-		{
-			x *= -1;
-		}
-		str++;
-	}
-	while (*str >= '0' && *str <= '9')
-	{
-		i = (i * 10) + (*str - '0');
-		str++;
-	}
-	return (i * x);
+	new[i] = '\0';
+	return (new);
 }

@@ -6,16 +6,15 @@
 /*   By: huda-roc <huda-roc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 10:47:10 by huda-roc          #+#    #+#             */
-/*   Updated: 2025/10/15 11:39:31 by huda-roc         ###   ########.fr       */
+/*   Updated: 2025/10/17 13:41:48 by huda-roc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-#include <stdlib.h>
-#include <unistd.h>
-
+# include <stdlib.h>
+# include <unistd.h>
 
 /* ************************************************************************** */
 /*                              PART 1 - LIBC                                 */
@@ -23,11 +22,11 @@
 
 /* Funcoes para verificar caracteres */
 
-int	ft_isalpha(int c);
-int	ft_isdigit(int c);
-int	ft_isalnum(int c);
-int	ft_isascii(int c);
-int	ft_isprint(int c);
+int		ft_isalpha(int c);
+int		ft_isdigit(int c);
+int		ft_isalnum(int c);
+int		ft_isascii(int c);
+int		ft_isprint(int c);
 
 /* Funcoes para manipular strings */
 
@@ -41,8 +40,8 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 
 /* Funcoes para conversao */
 
-int	ft_toupper(int c);
-int	ft_tolower(int c);
+int		ft_toupper(int c);
+int		ft_tolower(int c);
 
 /* Funcoes para procurar algo */
 
@@ -55,7 +54,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 
 /* Conversao de uma String para Inteiro */
 
-int	ft_atoi(const char *str);
+int		ft_atoi(const char *str);
 
 /* Alocacao de Memoria */
 
