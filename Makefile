@@ -10,18 +10,6 @@
 #                                                                              #
 # **************************************************************************** #
 
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: dgouvea- <marvin@42.fr>                    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/10/15 10:54:15 by dgouvea-          #+#    #+#              #
-#    Updated: 2025/10/15 10:54:21 by dgouvea-         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 # Nome da Library
 NAME = libft.a
 
@@ -58,8 +46,8 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Bonus rule
-bonus: $(OBJS) $(BONUS_OBJS)
-	ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
+bonus: $(BONUS_OBJS)
+	@make OBJS="$(OBJS) $(BONUS_OBJS)" all
 
 # Clean object files
 clean:
