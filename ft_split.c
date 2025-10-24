@@ -3,59 +3,78 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: huda-roc <huda-roc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: huda-roc <huda-roc@42student.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/17 16:03:36 by huda-roc          #+#    #+#             */
-/*   Updated: 2025/10/17 16:15:46 by huda-roc         ###   ########.fr       */
+/*   Created: 2025/10/24 14:15:24 by huda-roc          #+#    #+#             */
+/*   Updated: 2025/10/24 14:16:04 by huda-roc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	word_count(const char *s, char c)
+static size_t	_ft_count_words(char const *s, char c)
 {
 	size_t	count;
+	size_t	i;
 
 	count = 0;
-	while (*s)
+	i = 0;
+	while (s[i])
 	{
-		if (*s != c)
-		{
+		if (s[i] != c && (i == 0 || s[i - 1] == c))
 			count++;
-			while (*s && *s != c)
-				s++;
-		}
-		else
-			s++;
+		i++;
 	}
 	return (count);
 }
 
+static char	*_ft_get_word(const char *s, char c, size_t *index)
+{
+	int		i;
+	size_t	start;
+
+	i = *index;
+	while (s[i] == c)
+		i++;
+	start = i;
+	while (s[i] && s[i] != c)
+		i++;
+	*index = i;
+	return (ft_substr(s, start, i - start));
+}
+
+static void	_ft_destroy_array_str(char **result, size_t i)
+{
+	while (i > 0)
+		free(result[--i]);
+	free(result);
+}
+
 char	**ft_split(char const *s, char c)
 {
-	char	**arr;
+	char	**result;
+	size_t	words;
 	size_t	i;
-	size_t	len;
+	size_t	index;
 
-	i = 0;
 	if (!s)
 		return (NULL);
-	arr = (char **)malloc((word_count(s, c) + 1) * sizeof(char *));
-	if (!arr)
+	words = _ft_count_words(s, c);
+	result = malloc(sizeof(char *) * (words + 1));
+	if (!result)
 		return (NULL);
-	while (*s)
+	i = 0;
+	index = 0;
+	while (i < words)
 	{
-		if (*s != c)
+		result[i] = _ft_get_word(s, c, &index);
+		if (!result[i])
 		{
-			len = 0;
-			while (s[len] && s[len] != c)
-				len++;
-			arr[i++] = ft_substr(s, 0, len);
-			s += len;
+			_ft_destroy_array_str(result, i);
+			return (NULL);
 		}
-		else
-			s++;
+		i++;
 	}
-	arr[i] = NULL;
-	return (arr);
+	result[i] = NULL;
+	return (result);
 }
